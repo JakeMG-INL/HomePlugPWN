@@ -1,4 +1,5 @@
 from scapy.all import *
+
 """
     Copyright (C) HomePlugAV Layer for Scapy by FlUxIuS (Sebastien Dudek)
 """
@@ -135,7 +136,7 @@ def FragmentCond(pkt):
         A fragmentation field condition
         TODO: To complete
     """
-    return (pkt.version == 0x01)
+    return pkt.version == 0x01
 
 
 class MACManagementHeader(Packet):
@@ -1351,7 +1352,7 @@ class HomePlugAV(Packet):
     fields_desc = [MACManagementHeader,
                    ConditionalField(XShortField("FragmentInfo", 0x0),
                                     FragmentCond),
-                   ConditionalField(PacketListField("VendorField", "",
+                   ConditionalField(PacketListField("VendorField", VendorMME(),
                                                     VendorMME,
                                                     length_from=lambda x: 3),
                                     lambda pkt:(pkt.version == 0x00))]
@@ -1365,7 +1366,7 @@ bind_layers(Ether, HomePlugAV, {"type": 0x88e1})
 #   +----------+------------+--------------------+
 #   | Ethernet | HomePlugAV | Elements + Payload |
 #   +----------+------------+--------------------+
-bind_layers(HomePlugAV, GetDeviceVersion, HPtype= 0xA001)
+bind_layers(HomePlugAV, GetDeviceVersion, HPtype=0xA001)
 bind_layers(HomePlugAV, StartMACRequest, HPtype=0xA00C)
 bind_layers(HomePlugAV, StartMACConfirmation, HPtype=0xA00D)
 bind_layers(HomePlugAV, ResetDeviceRequest, HPtype=0xA01C)
