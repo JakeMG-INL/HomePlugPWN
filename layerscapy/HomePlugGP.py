@@ -117,7 +117,9 @@ class CM_SLAC_MATCH_REQ(Packet):
                    ByteField("SecurityType", 0x0),
                    FieldLenField("MatchVariableFieldLen", None,
                                  count_of="VariableField", fmt="H"),
-                   PacketField("VariableField", None, SLAC_varfield)]
+                   PacketField("VariableField",
+                               SLAC_varfield(),
+                               SLAC_varfield)]
 
 
 class SLAC_varfield_cnf(Packet):
@@ -129,7 +131,7 @@ class SLAC_varfield_cnf(Packet):
                    StrFixedLenField("RunID", b"\x00" * 8, 8),
                    StrFixedLenField("RSVD", b"\x00" * 8, 8),
                    StrFixedLenField("NetworkID", b"\x00" * 7, 7),
-                   ShortField("Reserved", 0),
+                   ByteField("Reserved", 0x0),
                    StrFixedLenField("NMK", b"\x00" * 16, 16)]
 
 
@@ -139,7 +141,9 @@ class CM_SLAC_MATCH_CNF(Packet):
                    ByteField("SecurityType", 0x0),
                    FieldLenField("MatchVariableFieldLen", None,
                                  count_of="VariableField", fmt="H"),
-                   PacketField("VariableField", None, SLAC_varfield_cnf)]
+                   PacketField("VariableField",
+                               SLAC_varfield_cnf(),
+                               SLAC_varfield_cnf)]
 
 
 class CM_START_ATTEN_CHAR_IND(Packet):
