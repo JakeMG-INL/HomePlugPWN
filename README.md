@@ -2,7 +2,7 @@ HomePlugPWN
 ===========
 
 - HomePlugAV PLC tools presented at NoSuchCon 2014: http://www.nosuchcon.org/talks/2014/D1_03_Sebastien_Dudek_HomePlugAV_PLC.pdf
-- Tools on HomePlug GreenPHY will be presented soonly...
+- Tools on HomePlug GreenPHY have been presented during SSTIC 2019 about V2G Attacks : https://www.sstic.org/media/SSTIC2019/SSTIC-actes/v2g_injector_playing_with_electric_cars_and_chargi/SSTIC2019-Article-v2g_injector_playing_with_electric_cars_and_charging_stations_via_powerline-dudek.pdf
 
 ## Requirements 
 - Python >= 3.x
