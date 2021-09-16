@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 import hashlib
 import binascii
@@ -48,9 +48,9 @@ if __name__ == "__main__":
     if options.phash is not None:
         if options.nmk is True:
             pbkdf1 = PBKDF1(options.phash, NMK_SALT, 16)
-            print "PBKDF1 print: " + pbkdf1
+            print ("PBKDF1 print: " + pbkdf1)
         if options.dak is True:
             pbkdf1 = PBKDF1(options.phash, DAK_SALT, 16)
-            print "PBKDF1 print: " + pbkdf1
+            print ("PBKDF1 print: " + pbkdf1)
     else:
-        print "Error: Please provide a DAK passphrase string in argument."
+        print ("Error: Please provide a DAK passphrase string in argument.")

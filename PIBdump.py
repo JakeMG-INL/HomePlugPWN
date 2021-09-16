@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 from layerscapy.HomePlugAV import *
 from optparse import OptionParser
@@ -37,9 +37,9 @@ if __name__ == "__main__":
     
     pib = dump_all(options.sourcemac, options.destmac, options.iface)
     if ModulePIB(pib).checksumPIB == chksum32(pib, ModulePIB(pib).checksumPIB):
-        print "[+] PIB dump: Success!"
+        print ("[+] PIB dump: Success!")
         f = open(options.output, "w")
         f.write(pib)
         f.close()
     else:
-        print "Something gone wrong! :("
+        print ("Something gone wrong! :(")

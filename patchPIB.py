@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 from layerscapy.HomePlugAV import *
 from optparse import OptionParser
@@ -52,10 +52,10 @@ if __name__ == "__main__":
     pib = dump_all(options.sourcemac, options.destmac, options.iface)
     pibparsed = ModulePIB(pib)
     if pibparsed.checksumPIB == chksum32(pib, pibparsed.checksumPIB):
-        print "[+] PIB dump: Success!"
+        print ("[+] PIB dump: Success!")
         if options.addresses is not None:
             address , addlen = options.addresses.split(":")
-            print "[+] Modification of address %s (len: %s) with value='%s'" % (address, addlen, options.value)
+            print ("[+] Modification of address %s (len: %s) with value='%s'" % (address, addlen, options.value))
             if addlen < 1:
                  parser.error("The length of the value must be specified!")
             if '0x' in address:
@@ -71,9 +71,9 @@ if __name__ == "__main__":
                 parser.error("The specified length isn't right!")
             pib = pib[:address] + options.value + pib[address+addlen:]
         if options.targetvar is not None:
-            print "[+] old value of field '%s' is :" % options.targetvar
+            print ("[+] old value of field '%s' is :" % options.targetvar)
             hexdump(getattr(pibparsed, options.targetvar))
-            print "[+] new value is :"
+            print ("[+] new value is :")
             hexdump(options.value)
             setattr(pibparsed, options.targetvar, options.value)
             pib = str(pibparsed)
@@ -81,8 +81,8 @@ if __name__ == "__main__":
         pibparsed.checksumPIB = chksum32(str(pibparsed), pibparsed.checksumPIB)
         res = rewrite_all(str(pibparsed), options.destmac, options.sourcemac, options.iface)
         if res is True:
-            print ">>> Success <<<"
+            print (">>> Success <<<")
         else:
-            print "Failed! This memory region is probably read-only. Please find another way..."
+            print ("Failed! This memory region is probably read-only. Please find another way...")
     else:
-        print "Something gone wrong! :("
+        print ("Something gone wrong! :(")

@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 import sys
 import binascii
@@ -16,7 +16,7 @@ def appendindic(pkt):
     macad = pkt.src
     if macad not in dictio.keys() and macad != "00:00:00:00:00:00":
         dictio[macad] = None
-        print "\t Found Station: %s" % macad
+        print ("\t Found Station: %s" % macad)
 
 def listen():
     sniff(prn=appendindic, lfilter=lambda pkt:pkt.haslayer(HomePlugAV), timeout=5)
@@ -30,8 +30,8 @@ if __name__ == "__main__":
         help="source MAC address to use", metavar="SOURCEMAC")
     (options, args) = parser.parse_args()
     tlisten = threading.Thread(None, listen, None)
-    print "[+] Listening for confirmations..."
+    print ("[+] Listening for confirmations...")
     tlisten.start()
-    print "[+] Sending Get Device Type Requests"
+    print ("[+] Sending Get Device Type Requests")
     pkt = Ether(src=options.sourcemac)/HomePlugAV()
     sendp(pkt, iface=options.iface)

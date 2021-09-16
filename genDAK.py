@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 import sys
 
@@ -26,7 +26,7 @@ class DAKgen(object):
     def generate(self, space="-"):
         hwaddr = self._hwaddr
         if len(hwaddr.replace(":","")) != 12:
-            print "Bad MAC address"
+            print ("Bad MAC address")
             return -1
         _vendor = [int(x, 16) for x in hwaddr.replace(":", "")[:6]]
         _device = [int(x, 16) for x in hwaddr.replace(":", "")[6:]]
@@ -58,6 +58,6 @@ class DAKgen(object):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
     	keygen = DAKgen(sys.argv[1])
-    	print keygen.generate()
+    	print (keygen.generate())
     else:
-        print "Error: You need to enter a MAC address"
+        print ("Error: You need to enter a MAC address")

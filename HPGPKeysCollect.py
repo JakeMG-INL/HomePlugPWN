@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 import sys
 import pprint
@@ -27,7 +27,7 @@ def appendindic(pkt):
                         "EVID" : evid,
                 }
         dictio[netid] = newentry
-        print "[+] New keys collected for NetID (%s)" % repr(netid)
+        print ("[+] New keys collected for NetID (%s)" % repr(netid))
         pp.pprint(newentry)
 
 if __name__ == "__main__":
@@ -39,13 +39,13 @@ if __name__ == "__main__":
         help="Select a capture file to collect keys.", metavar="CAPTURE")
     (options, args) = parser.parse_args()
     if options.capture is not None and options.iface is None:
-        print "[+] Reading capture '%s'" % options.capture
+        print ("[+] Reading capture '%s'" % options.capture)
         r = rdpcap(options.capture)
         for i in r:
             if i.haslayer("CM_SLAC_MATCH_CNF"):
                 appendindic(i)
     elif options.iface is not None and options.capture is None:
-        print "Sniffing on interface '%s'" % options.iface
+        print ("Sniffing on interface '%s'" % options.iface)
         sniff(prn=appendindic, lfilter=lambda pkt:pkt.haslayer("CM_SLAC_MATCH_CNF")) 
     else:
-        print "No option selected!"
+        print ("No option selected!")

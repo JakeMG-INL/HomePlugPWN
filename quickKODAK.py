@@ -1,4 +1,4 @@
-#!/usr/bin/en python2
+#!/usr/bin/env python3
 
 """
     Copyright (C) Quick'n'dirty DAK bruteforcer for HomePlugAV PLCs by FlUxIuS (Sebastien Dudek)
