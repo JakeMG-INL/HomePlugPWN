@@ -46,6 +46,7 @@ if __name__ == "__main__":
                 appendindic(i)
     elif options.iface is not None and options.capture is None:
         print ("Sniffing on interface '%s'" % options.iface)
-        sniff(prn=appendindic, lfilter=lambda pkt:pkt.haslayer("CM_SLAC_MATCH_CNF")) 
+        sniff(prn=appendindic, lfilter=lambda pkt:pkt.haslayer("CM_SLAC_MATCH_CNF"),
+                L2socket=conf.L2socket) 
     else:
         print ("No option selected!")
