@@ -657,7 +657,7 @@ class AutoConnection(Packet):
                    XByteField("ConnCoQoSPrio", 0x00),
                    ShortField("ConnRate", 0),
                    LEIntField("ConnTTL", 0),
-                   ShortField("CSPECversion", 0),
+                #    ShortField("CSPECversion", 0),
                    StrFixedLenField("VlanTag",
                                     b"\x00" * 4,
                                     4),
@@ -1153,8 +1153,8 @@ class ModulePIB(Packet):
                          lambda pkt:(0x1FBC >= pkt.__offset and 0x1FBD <= pkt.__offset + pkt.__length)),  # noqa: E501
         ConditionalField(XByteField("OptimizationBackwardCompatible", 0),
                          lambda pkt:(0x1FBD >= pkt.__offset and 0x1FBE <= pkt.__offset + pkt.__length)),  # noqa: E501
-        ConditionalField(XByteField("reserved_21", 0),
-                         lambda pkt:(0x1FBE >= pkt.__offset and 0x1FBF <= pkt.__offset + pkt.__length)),  # noqa: E501
+        # ConditionalField(XByteField("reserved_21", 0),
+        #                  lambda pkt:(0x1FBE >= pkt.__offset and 0x1FBF <= pkt.__offset + pkt.__length)),  # noqa: E501
         ConditionalField(XByteField("MaxPbsPerSymbol", 0),
                          lambda pkt:(0x1FBF >= pkt.__offset and 0x1FC0 <= pkt.__offset + pkt.__length)),  # noqa: E501
         ConditionalField(XByteField("MaxModulation", 0),
